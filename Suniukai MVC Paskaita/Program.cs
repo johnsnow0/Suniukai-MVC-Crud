@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<SuniukaiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SuniukaiDbContext")));
+builder.Services.AddDbContext<EshopDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EshopDbContext")));
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<UserDbContext>();
 builder.Services.AddDbContext<UserDbContext>(options =>
@@ -21,7 +21,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-using (var scope = app.Services.CreateScope()) { var services = scope.ServiceProvider; var context = services.GetRequiredService<SuniukaiDbContext>(); context.Database.EnsureCreated(); }
+using (var scope = app.Services.CreateScope()) { var services = scope.ServiceProvider; var context = services.GetRequiredService<EshopDbContext>(); }
 
 
 app.UseHttpsRedirection();
